@@ -57,16 +57,21 @@ sys_sleep(void)
 {
   int n;
   uint ticks0;
-
+  // 获得系统调用的参数 Fetch the nth 32-bit system call argument.
   if(argint(0, &n) < 0)
     return -1;
+  // 加锁
   acquire(&tickslock);
+  // 保存 sleep 时的时间戳
   ticks0 = ticks;
+  // 循环睡眠
   while(ticks - ticks0 < n){
+    // 当前时间戳 - sleep 时的时间戳 < n
     if(myproc()->killed){
       release(&tickslock);
       return -1;
     }
+    // sleep
     sleep(&ticks, &tickslock);
   }
   release(&tickslock);

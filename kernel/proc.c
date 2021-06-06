@@ -570,7 +570,7 @@ sleep(void *chan, struct spinlock *lk)
   // Go to sleep.
   p->chan = chan;
   p->state = SLEEPING;
-
+  // 调度
   sched();
 
   // Tidy up.
