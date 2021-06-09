@@ -19,11 +19,17 @@ lijianran's Operation System
 
 - 2021.06.05
 
-1. 实现 sleep
+1. 添加了 sleep 的简易版实现
 
 - 2021.06.06
 
 1. 通过 pipe 实现 pingpong
 2. 通过 pipe 实现 primes，递归求解素数
-3. 实现简易版 find
-4. 实现简易版 xargs 管道命令 [xargs 教程](http://www.ruanyifeng.com/blog/2019/08/xargs-tutorial.html) 
+3. 添加 find 的简易版实现
+4. 添加 xargs 管道命令的简易版实现 [xargs 教程](http://www.ruanyifeng.com/blog/2019/08/xargs-tutorial.html) 
+
+- 2021.06.09
+
+1. 添加了系统调用 trace 的接口实现
+2. 添加了系统调用 sysinfo 的接口实现
+3. 添加了 sysinfo 的用户程序，查询当前空闲内存大小以及正在使用的线程个数

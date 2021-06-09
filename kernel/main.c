@@ -14,7 +14,8 @@ main()
     consoleinit();
     printfinit();
     printf("\n");
-    printf("xv6 kernel is booting\n");
+    printf("lijianran's OS kernel is booting\n");
+    printf("  Welcome to lijianran's OS\n");
     printf("\n");
     kinit();         // physical page allocator
     kvminit();       // create kernel page table

@@ -294,6 +294,8 @@ fork(void)
   pid = np->pid;
 
   np->state = RUNNABLE;
+  // trace
+  np->syscallnum = p->syscallnum;
 
   release(&np->lock);
 
@@ -692,4 +694,19 @@ procdump(void)
     printf("%d %s %s", p->pid, state, p->name);
     printf("\n");
   }
+}
+
+// 2021.06.09
+// sysinfo
+// 获取当前活动进程个数
+int nproc_active(void)
+{
+  int count = 0;
+  // 最大 64 个进程
+  for (int i = 0; i < NPROC; ++i) {
+    // 计算状态不为 UNUSED 的进程个数
+    if (proc[i].state != UNUSED)
+      count++;
+  }
+  return count;
 }

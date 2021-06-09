@@ -1,7 +1,7 @@
 
 // 2021.06.05
 // lijianran
-// 调用sleep system call实现，执行 sleep 10，表示程序等待10个时钟周期（时器芯片的两次中断之间的时间）。
+// 调用 sleep system call 实现，执行 sleep 10，表示程序等待10个时钟周期（时器芯片的两次中断之间的时间）。
 
 #include "kernel/types.h"
 #include "user/user.h"
