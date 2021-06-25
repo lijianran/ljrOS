@@ -25,6 +25,7 @@ struct
   struct run *freelist;
 } kmem;
 
+// main 调用
 void kinit()
 {
   initlock(&kmem.lock, "kmem");
@@ -51,6 +52,11 @@ void kfree(void *pa)
     panic("kfree");
 
   // Fill with junk to catch dangling refs.
+  /*
+  This will cause code that uses memory after freeing it (uses “dangling references”) 
+  to read garbage instead of the old valid contents; 
+  hopefully that will cause such code to break faster.
+  */
   memset(pa, 1, PGSIZE);
 
   r = (struct run *)pa;

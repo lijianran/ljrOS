@@ -9,7 +9,7 @@ lijianran's Operation System
 - docker ubuntu20.04
 - gcc g++ 9.3
 - GNU Make 4.2.1
-- gdb 9.2
+- gdb-multiarch 9.2
 
 ## 开发日志
 

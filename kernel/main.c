@@ -17,7 +17,9 @@ main()
     printf("lijianran's OS kernel is booting\n");
     printf("  Welcome to lijianran's OS\n");
     printf("\n");
+    // 设置内存的 allocator
     kinit();         // physical page allocator
+    // 设置 kernel 的页表
     kvminit();       // create kernel page table
     kvminithart();   // turn on paging
     procinit();      // process table
