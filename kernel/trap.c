@@ -32,9 +32,8 @@ trapinithart(void)
 //
 // handle an interrupt, exception, or system call from user space.
 // called from trampoline.S
-//
-void
-usertrap(void)
+// trap 处理函数
+void usertrap(void)
 {
   int which_dev = 0;
 
@@ -43,6 +42,7 @@ usertrap(void)
 
   // send interrupts and exceptions to kerneltrap(),
   // since we're now in the kernel.
+  // 如果本来就在内核态中，可以省略一些步骤
   w_stvec((uint64)kernelvec);
 
   struct proc *p = myproc();
@@ -62,6 +62,7 @@ usertrap(void)
 
     // an interrupt will change sstatus &c registers,
     // so don't enable until done with those registers.
+    // 显式的打开设备中断
     intr_on();
 
     syscall();
@@ -85,15 +86,15 @@ usertrap(void)
 
 //
 // return to user space
-//
-void
-usertrapret(void)
+// 处理完 trap 后，返回到用户态
+void usertrapret(void)
 {
   struct proc *p = myproc();
 
   // we're about to switch the destination of traps from
   // kerneltrap() to usertrap(), so turn off interrupts until
   // we're back in user space, where usertrap() is correct.
+  // 显式的关闭设备中断
   intr_off();
 
   // send syscalls, interrupts, and exceptions to trampoline.S
@@ -124,6 +125,10 @@ usertrapret(void)
   // jump to trampoline.S at the top of memory, which 
   // switches to the user page table, restores user registers,
   // and switches to user mode with sret.
+  /*
+  * 在 C 代码中，当你调用函数，第一个参数会存在 a0，这就是为什么 a0 里面的数值是指向 trapframe 的指针。
+  * fn函数是就是刚刚我向你展示的位于trampoline.S 中的代码。
+  */
   uint64 fn = TRAMPOLINE + (userret - trampoline);
   ((void (*)(uint64,uint64))fn)(TRAPFRAME, satp);
 }
