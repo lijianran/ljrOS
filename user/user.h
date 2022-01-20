@@ -25,7 +25,7 @@ int getpid(void);
 char *sbrk(int);
 int sleep(int);
 int uptime(void);
-int trace(int);
+int trace(int); // 调用链路
 int sysinfo(struct sysinfo *);
 
 // ulib.c

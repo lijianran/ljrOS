@@ -33,3 +33,7 @@ lijianran's Operation System
 1. 添加了系统调用 trace 的接口实现
 2. 添加了系统调用 sysinfo 的接口实现
 3. 添加了 sysinfo 的用户程序，查询当前空闲内存大小以及正在使用的线程个数
+
+- 2022.01.20
+
+1. 添加 vmprint 来打印页表
