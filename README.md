@@ -37,3 +37,10 @@ lijianran's Operation System
 - 2022.01.20
 
 1. 添加 vmprint 来打印页表
+
+- 2022.01.23
+
+分支: pgtbl
+
+1. 为每个进程添加一个 kernel pagetable 来取代之前的 global pagetable
+2. 优化 copyin / copyinstr 内核可以直接利用 process kernel pagetable 来翻译虚拟地址
